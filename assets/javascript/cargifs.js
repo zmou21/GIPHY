@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 		for (var i = 0; i < carArr.length; i++) {
 
-			var gifButton = $("<button class='btn btn-info'>");
+			var gifButton = $("<button class='btn btn-danger'>");
 
 			gifButton.addClass("car-gif");
 
@@ -83,17 +83,21 @@ $(document).ready(function() {
 
 				var gifDiv = $("<div class='gif-div'>");
 
-				var image = $("<img src='" +  stillGif + "' alt='car-gifs' class='gif'>");
+				var image = $("<img src='" +  stillGif + "'>");
 
-				image.attr("data-state", "still");
-
-				image.attr("data-still");
+				image.attr("data-still", stillGif);
 
 				image.attr("data-animate", movingGif);
 
+				image.attr("alt", "cargifs");
+
+				image.attr("data-state", "still");
+
+				image.addClass("gif");
+
 				gifDiv.append(image);
 
-				var p = $("<p> Rating: " + response.data[i].rating.toUpperCase() + "</p>");
+				var p = $("<p><b>Rating:</b> " + response.data[i].rating.toUpperCase() + "</p>");
 
 				gifDiv.append(p);
 
@@ -124,7 +128,7 @@ $(document).ready(function() {
 		displayButtons();
 	});
 
-	$("#gif-holder").on("click", function() {
+	$(".gif").on("click", function() {
 
 		console.log(this);
 

@@ -7,11 +7,12 @@ label {
 	font-size: 1.15em;
 }
 
-
 .header {
-	background-url: url("../images/audi.jpeg");
-	margin-top: 1%;
-	border-bottom: 3px outset #777;
+	background-color: lightgrey;
+	/*background-url: url("../images/audi.jpeg");*/
+	padding: 1%;
+	/*border: 3px solid #777;*/
+	text-align: center;
 }
 
 #user-input {
@@ -24,10 +25,6 @@ label {
 	margin: 1%;
 }
 
-.gif-div {
-	position: relative;
-}
-
 .search {
 	border-left: 1px solid #555;
 }
@@ -35,7 +32,8 @@ label {
 
 #submit {
 	display: inline;
-	margin-top: 2%;
+	margin: 2% 0;
+
 }
 
 

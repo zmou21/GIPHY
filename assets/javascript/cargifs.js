@@ -64,6 +64,8 @@ $(document).ready(function() {
 
 		var clicked = $(this).attr("data-button");
 
+		// console.log(this);
+		
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=3WLAsTEKAa7bJ0uW9HpgGcTPhFOwlHmw&limit=10";
 
 		$.ajax({
@@ -73,7 +75,7 @@ $(document).ready(function() {
 		})
 		.done(function(response){
 
-			console.log(response.data)
+			// console.log(response.data)
 
 			for (var i = 0; i < response.data.length; i++){
 
@@ -81,28 +83,52 @@ $(document).ready(function() {
 
 				var movingGif = response.data[i].images.fixed_height.url;
 
-				var gifDiv = $("<div class='gif-div'>");
+				var gifDiv = $("<div>");
 
-				var image = $("<img src='" +  stillGif + "'>");
+				var image = $("<img id='gif' style='cursor:pointer;' src='" +  stillGif + "'>");
 
-				image.attr("data-still", stillGif);
+					image.attr("data-still", stillGif);
 
-				image.attr("data-animate", movingGif);
+					image.attr("data-animate", movingGif);
 
-				image.attr("alt", "cargifs");
+					image.attr("alt", "cargifs");
 
-				image.attr("data-state", "still");
+					image.attr("data-state", "still");
 
-				image.addClass("gif");
-
-				gifDiv.append(image);
+					gifDiv.append(image);
 
 				var p = $("<p><b>Rating:</b> " + response.data[i].rating.toUpperCase() + "</p>");
 
-				gifDiv.append(p);
+					gifDiv.append(p);
 
 				$(".gif-holder").prepend(gifDiv);
-			};
+
+
+				$("#gif").click(function(e) {
+
+				console.log(this);
+
+				var state = $(this).attr("data-state");
+
+				// console.log(state);
+
+				if (state == "still") {
+
+					$(this).attr("src", $(this).attr("data-animate"));
+
+					$(this).attr("data-state", "animate");
+				} 
+
+				else {
+
+					$(this).attr("src", $(this).attr("data-still"));
+
+					$(this).attr("data-state", "still");
+				}
+
+			});	
+
+			};		
 
 	 	});		
 
@@ -119,37 +145,13 @@ $(document).ready(function() {
 
 		var userInput = $("#user-input").val().trim();
 
-		carArr.push(userInput);
+			carArr.push(userInput);
 
-		console.log(carArr);
+			// console.log(carArr);
 
 		$("#user-input").val("");
 
 		displayButtons();
-	});
-
-	$(".gif").on("click", function() {
-
-		console.log(this);
-
-		var state = $(this).attr("data-state");
-
-		console.log(state);
-
-		if (state == "still") {
-
-			$(this).attr("src", $(this).attr("data-animate"));
-
-			$(this).attr("data-state", "animate");
-		} 
-
-		else {
-
-			$(this).attr("src", $(this).attr("data-still"));
-
-			$(this).attr("data-state", "still");
-		}
-
 	});
 
 	$(document).on("click", ".car-gif", displayGif);

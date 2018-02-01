@@ -24,9 +24,9 @@ $(document).ready(function() {
 
 		for (var i = 0; i < carArr.length; i++) {
 
-			var gifButton = $("<button>");
+			var gifButton = $("<button class='btn btn-info'>");
 
-			gifButton.addClass("carGif");
+			gifButton.addClass("car-gif");
 
 			gifButton.attr("data-button", carArr[i]);
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	function displayGif() {
 
-		event.preventDefault();
+		// event.preventDefault();
 
 		var clicked = $(this).attr("data-button");
 
@@ -73,31 +73,31 @@ $(document).ready(function() {
 		})
 		.done(function(response){
 
-			// console.log(response.data)
+			console.log(response.data)
 
 			for (var i = 0; i < response.data.length; i++){
 
-				var stillGif = response.data[i].images.original_still.url;
+				var stillGif = response.data[i].images.fixed_height_still.url;
 
 				var movingGif = response.data[i].images.fixed_height.url;
 
-				var gifDiv = $("<div>");
+				var gifDiv = $("<div class='gif-div'>");
 
 				var image = $("<img src='" +  stillGif + "' alt='car-gifs' class='gif'>");
 
 				image.attr("data-state", "still");
 
+				image.attr("data-still");
+
 				image.attr("data-animate", movingGif);
 
-				image.attr("data-still", stillGif);
+				gifDiv.append(image);
 
 				var p = $("<p> Rating: " + response.data[i].rating.toUpperCase() + "</p>");
 
-				gifDiv.prepend(image);
+				gifDiv.append(p);
 
-				gifDiv.prepend(p);
-
-				$(".gif-holder").append(gifDiv);
+				$(".gif-holder").prepend(gifDiv);
 			};
 
 	 	});		
@@ -124,12 +124,13 @@ $(document).ready(function() {
 		displayButtons();
 	});
 
-
-	$(".gif").on("click", function() {
+	$("#gif-holder").on("click", function() {
 
 		console.log(this);
 
 		var state = $(this).attr("data-state");
+
+		console.log(state);
 
 		if (state == "still") {
 
@@ -147,7 +148,7 @@ $(document).ready(function() {
 
 	});
 
-	$(document).on("click", ".carGif", displayGif);
+	$(document).on("click", ".car-gif", displayGif);
 
         // On click of image div - function
         // if (state == "animate")

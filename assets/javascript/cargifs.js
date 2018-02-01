@@ -6,8 +6,6 @@
 
 $(document).ready(function() {
 
-
-
 	var carArr = ["Chevelle", "Lamborghini", "Bugatti"];
 
 	displayButtons();
@@ -28,9 +26,11 @@ $(document).ready(function() {
 
 			var gifButton = $("<button>");
 
+			gifButton.addClass("carGif");
+
 			gifButton.attr("data-button", carArr[i]);
 
-			gifButton.append(carArr[i]);
+			gifButton.text(carArr[i]);
 
 			$(".button-holder").append(gifButton);
 		};
@@ -58,13 +58,11 @@ $(document).ready(function() {
                         // Append jQuery paragrapgh to jQuery div
                         // Append jQuery div to page	
 
-	$("button").on("click", function(event) {
+	function displayGif() {
 
 		event.preventDefault();
 
 		var clicked = $(this).attr("data-button");
-
-		// ("button").empty();
 
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=3WLAsTEKAa7bJ0uW9HpgGcTPhFOwlHmw&limit=10";
 
@@ -73,21 +71,25 @@ $(document).ready(function() {
 		url: queryURL,
 		method: "GET"
 		})
-		.then(function(response){
+		.done(function(response){
 
-			console.log(response.data)
+			// console.log(response.data)
 
 			for (var i = 0; i < response.data.length; i++){
 
+				var stillGif = response.data[i].images.original_still.url;
+
+				var movingGif = response.data[i].images.fixed_height.url;
+
 				var gifDiv = $("<div>");
 
-				var image = $("<img src='" + response.data[i].images.original_still.url + "' alt='car-gifs'>");
+				var image = $("<img src='" +  stillGif + "' alt='car-gifs' class='gif'>");
 
 				image.attr("data-state", "still");
 
-				image.attr("data-animate-url");
+				image.attr("data-animate", movingGif);
 
-				image.attr("data-still-url");
+				image.attr("data-still", stillGif);
 
 				var p = $("<p> Rating: " + response.data[i].rating.toUpperCase() + "</p>");
 
@@ -100,23 +102,55 @@ $(document).ready(function() {
 
 	 	});		
 
-	});
+	};
 
 	        // On click of form submit button - function
             // Create variable of user input text field
             // Push variable just created to array (buttonTitles)
             // Run displayButtons function
 
-	$("#submit").on("click", function() {
+	$("#submit").on("click", function(event) {
+
+		event.preventDefault();
 
 		var userInput = $("#user-input").val().trim();
 
 		carArr.push(userInput);
 
+		console.log(carArr);
+
+		$("#user-input").val("");
+
 		displayButtons();
 	});
 
+
+	$(".gif").on("click", function() {
+
+		console.log(this);
+
+		var state = $(this).attr("data-state");
+
+		if (state == "still") {
+
+			$(this).attr("src", $(this).attr("data-animate"));
+
+			$(this).attr("data-state", "animate");
+		} 
+
+		else {
+
+			$(this).attr("src", $(this).attr("data-still"));
+
+			$(this).attr("data-state", "still");
+		}
+
+	});
+
+	$(document).on("click", ".carGif", displayGif);
+
         // On click of image div - function
+        // if (state == "animate")
             // Set variable equal to image clicked data-state attribute
             // if (imageState == "still")
                 // Set src attribute of image clicked to be data-animateurl attribute of the image clicked

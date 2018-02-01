@@ -1,10 +1,17 @@
 body {
-	background-color: #eee;
+	background-color: steelblue;
 }
 
 
 label {
 	font-size: 1.15em;
+}
+
+
+.header {
+	background-url: url("../images/audi.jpeg");
+	margin-top: 1%;
+	border-bottom: 3px outset #777;
 }
 
 #user-input {
@@ -29,5 +36,13 @@ label {
 #submit {
 	display: inline;
 	margin-top: 2%;
+}
+
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	right: 1%;
+	text-align: center;
 }
 

@@ -1,0 +1,33 @@
+body {
+	background-color: #eee;
+}
+
+
+label {
+	font-size: 1.15em;
+}
+
+#user-input {
+	width: 100%;
+}
+
+.car-gif {
+	padding: 0.75%;
+	display: inline;
+	margin: 1%;
+}
+
+.gif-div {
+	position: relative;
+}
+
+.search {
+	border-left: 1px solid #555;
+}
+
+
+#submit {
+	display: inline;
+	margin-top: 2%;
+}
+

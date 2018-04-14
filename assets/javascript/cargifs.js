@@ -6,7 +6,7 @@
 
 $(document).ready(function() {
 
-	const carArr = ["Nature", "Lamborghini", "Puppy"];
+	const carArr = ["Nature", "Lamborghini", "Puppy", "Baseball", "Football", "Horses", "Jaguars", "Cool", "Technology", "Water", "Food"];
 
 	displayButtons();
 

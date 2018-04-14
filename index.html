@@ -4,37 +4,47 @@
 	<title>GIPHY</title>
 	<meta charset="utf-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+lmTKXkS+c9d34U9obDdGOZT7zqFicJDkhckYYsW7oenXR37T2OEV4uqfUO45M87" crossorigin="anonymous">	<!--Bootstrap-->
+ 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
+ 	<link rel="stylesheet" href="assets/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> <!--custom CSS file-->
-	
+
 </head>
 <body>
 
 	<div class="container">
 		<div class="row header">
 			<div class="col-md-12">
-				<h1>CAR GIFS</h1>	
+				<h1 class="animated pulse">GIF SEARCH</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 button-holder">				
+			<div class="col-md-12 instructions" style="color:white;">
+				<h3>Search for your favorite GIFS and click the GIFs to play them.</h3>
 			</div>
-		</div>	
+		</div>
 		<div class="row">
-			<div class="col-md-9 gif-holder">					
+			<div class="col-md-9 button-holder">
 			</div>
 			<div class="col-md-3 search">
 				<form>
-					<label><b>Add Your Favorite Car</b></label>
+					<label><b>Search Here</b></label>
 					<input type="text" name="search" id="user-input"> <br>
 					<button class="btn btn-default" id="submit">Submit</button>
 				</form>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="gif-holder row">
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12 footer">
 				<h5>&copy; 2018 Zack</h5>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 

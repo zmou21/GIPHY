@@ -6,7 +6,7 @@
 
 $(document).ready(function() {
 
-	var carArr = ["Chevelle", "Lamborghini", "Bugatti"];
+	const carArr = ["Nature", "Lamborghini", "Puppy"];
 
 	displayButtons();
 
@@ -22,9 +22,9 @@ $(document).ready(function() {
 
 		$(".button-holder").empty();
 
-		for (var i = 0; i < carArr.length; i++) {
+		for (let i = 0; i < carArr.length; i++) {
 
-			var gifButton = $("<button class='btn btn-danger'>");
+			const gifButton = $("<button class='btn btn-danger'>");
 
 			gifButton.addClass("car-gif");
 
@@ -56,17 +56,17 @@ $(document).ready(function() {
                         // Put the rating from GIPHY response into the paragrapgh created
                         // Append jQuery image to jQuery div
                         // Append jQuery paragrapgh to jQuery div
-                        // Append jQuery div to page	
+                        // Append jQuery div to page
 
 	function displayGif() {
 
 		// event.preventDefault();
 
-		var clicked = $(this).attr("data-button");
+		const clicked = $(this).attr("data-button");
 
 		// console.log(this);
-		
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=3WLAsTEKAa7bJ0uW9HpgGcTPhFOwlHmw&limit=10";
+
+		const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=3WLAsTEKAa7bJ0uW9HpgGcTPhFOwlHmw&limit=10";
 
 		$.ajax({
 
@@ -75,17 +75,23 @@ $(document).ready(function() {
 		})
 		.done(function(response){
 
-			// console.log(response.data)
+			//console.log(response.data)
 
-			for (var i = 0; i < response.data.length; i++){
+			for (let i = 0; i < response.data.length; i++){
 
-				var stillGif = response.data[i].images.fixed_height_still.url;
+				const stillGif = response.data[i].images.fixed_height_still.url;
 
-				var movingGif = response.data[i].images.fixed_height.url;
+				const movingGif = response.data[i].images.fixed_height.url;
 
-				var gifDiv = $("<div>");
+				const gifDiv = $("<div>");
 
-				var image = $("<img id='gif' style='cursor:pointer;' src='" +  stillGif + "'>");
+				const innerDiv = $("<div>");
+
+				// innerDiv.addClass("col-md-6");
+
+				innerDiv.addClass("showGif");
+
+				const image = $("<img id='gif' style='cursor:pointer;' src='" +  stillGif + "'>");
 
 					image.attr("data-still", stillGif);
 
@@ -95,11 +101,13 @@ $(document).ready(function() {
 
 					image.attr("data-state", "still");
 
-					gifDiv.append(image);
+					innerDiv.append(image);
 
-				var p = $("<p><b>Rating:</b> " + response.data[i].rating.toUpperCase() + "</p>");
+				const p = $("<p><b>Rating:</b> " + response.data[i].rating.toUpperCase() + "</p>");
 
-					gifDiv.append(p);
+					innerDiv.append(p);
+
+					gifDiv.append(innerDiv);
 
 				$(".gif-holder").prepend(gifDiv);
 
@@ -108,7 +116,7 @@ $(document).ready(function() {
 
 				console.log(this);
 
-				var state = $(this).attr("data-state");
+				const state = $(this).attr("data-state");
 
 				// console.log(state);
 
@@ -117,7 +125,7 @@ $(document).ready(function() {
 					$(this).attr("src", $(this).attr("data-animate"));
 
 					$(this).attr("data-state", "animate");
-				} 
+				}
 
 				else {
 
@@ -126,11 +134,11 @@ $(document).ready(function() {
 					$(this).attr("data-state", "still");
 				}
 
-			});	
+			});
 
-			};		
+			};
 
-	 	});		
+	 	});
 
 	};
 
@@ -143,7 +151,7 @@ $(document).ready(function() {
 
 		event.preventDefault();
 
-		var userInput = $("#user-input").val().trim();
+		const userInput = $("#user-input").val().trim();
 
 			carArr.push(userInput);
 
@@ -166,5 +174,5 @@ $(document).ready(function() {
 				// Set src attribute of image clicked to be data-stillurl attribute of the image clicked
 				// Set data-state attribute of image clicked to be "still"
 
-	
+
 });

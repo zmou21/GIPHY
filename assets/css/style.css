@@ -15,6 +15,11 @@ label {
 	text-align: center;
 }
 
+.instructions {
+	padding: 0;
+	margin: 1% 0%;
+}
+
 #user-input {
 	width: 100%;
 }
@@ -27,15 +32,28 @@ label {
 
 .search {
 	border-left: 1px solid #555;
+	margin-bottom: auto;
 }
 
 
 #submit {
 	display: inline;
 	margin: 2% 0;
-
 }
 
+#gif{
+	display: inline;
+}
+
+.showGif{
+	display: inline;
+	float: left;
+	margin-left: 2%;
+}
+
+p {
+	text-align: center;
+}
 
 .footer {
 	position: fixed;
@@ -43,4 +61,3 @@ label {
 	right: 1%;
 	text-align: center;
 }
-
